@@ -1,19 +1,21 @@
-import Collection from '../pages/collection/Collection'
 import Home from '../pages/home/Home'
-import Marketplace from '../pages/marketplace/Marketplace'
-import Nft from '../pages/nft/Nft'
+import NotFound from '../components/notFound/NotFound'
 import Rankings from '../pages/rankings/Rankings'
+import Collection from '../pages/collection/Collection'
+import Nft from '../pages/nft/Nft'
 
-type PUBLIC_ROUTES = {
+export const rootRoute = '/nft-marketplace'
+
+type ROUTE = {
   path: string
   component: React.FC
 }
 
-export const publicRoutes: PUBLIC_ROUTES[] = [
-  { path: '', component: Home },
-  { path: '*', component: Home },
-  { path: 'rankings', component: Rankings },
-  { path: 'collection/:id', component: Collection },
-  { path: 'marketplace', component: Marketplace },
-  { path: 'nft/:id', component: Nft },
+export const wrappedRoutes: ROUTE[] = [{ path: '*', component: NotFound }]
+
+export const headerRoutes: ROUTE[] = [
+  { path: `${rootRoute}/rankings`, component: Rankings },
+  { path: `${rootRoute}/collection/:id`, component: Collection },
+  { path: `${rootRoute}/nft/:id`, component: Nft },
+  { path: '*', component: NotFound },
 ]

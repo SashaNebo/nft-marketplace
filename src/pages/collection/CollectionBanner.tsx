@@ -1,24 +1,26 @@
 import { FC } from 'react'
-import cn from './Collection.module.scss'
-import { COLLECTION_INFO_STRING, CONTRACT_INFO_STRING } from '../../types/collectionsTypes'
 
-type BannerProps = {
-  collection: CONTRACT_INFO_STRING
+import cn from './Collection.module.scss'
+import { COLLECTION } from '../../types/componentsTypes/collectionTypes'
+import { toCollectVerifiedData } from '../../utils/collectVerifiedData'
+
+type PROPS = {
+  collection: COLLECTION
 }
 
-const CollectionBanner: FC<BannerProps> = ({ collection }) => {
-  const { logo, banner } = collection
+const CollectionBanner: FC<PROPS> = ({ collection }) => {
+  const { bannerUrl, logoUrl } = toCollectVerifiedData<COLLECTION>(collection)
 
   return (
     <div className={cn['collection__banner']}>
-      {banner ? (
-        <img className={cn['collection__banner-img']} src={banner} alt='' />
+      {bannerUrl ? (
+        <img className={cn['collection__banner-img']} src={bannerUrl} alt='' />
       ) : (
         <div className={cn['collection__banner-bg']}></div>
       )}
       <div className='container'>
         <div className={cn['collection__logo']}>
-          <img src={logo} alt='' />
+          <img src={logoUrl} alt='' />
         </div>
       </div>
     </div>

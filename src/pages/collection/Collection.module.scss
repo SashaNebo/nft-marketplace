@@ -83,9 +83,24 @@
   &__text {
     font-family: var(--font-family-work);
     font-size: var(--fz-h5);
-    font-weight: var(--fw-400);
-    line-height: var(--lh-160);
+    font-weight: 400;
+    line-height: 160%;
     text-transform: capitalize;
+  }
+
+  &__el {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__value {
+
+    &-img {
+      max-width: 40px;
+      max-height: 40px;
+    }
   }
 }
 
@@ -99,8 +114,8 @@
   }
 
   & p {
-    font-weight: var(--fw-400);
-    line-height: var(--lh-160);
+    font-weight: 400;
+    line-height: 160%;
     text-transform: none;
   }
 
@@ -186,5 +201,111 @@
       background-color: var(--bg-gray);
       padding: 0 8px;
     }
+  }
+}
+
+@media (max-width: 1280px) {
+  .collection {
+
+    &__info {
+
+      &-top {
+        flex-direction: column;
+        row-gap: 30px;
+      }
+    }
+
+    &__nickname {
+      font-size: var(--fz-h3);
+      line-height: 120%;
+    }
+  }
+
+  .stats {
+
+    &__el {
+
+      & h4 {
+        font-size: var(--fz-h5);
+        line-height: 160%;
+      }
+
+      & p {
+        font-size: var(--fz-body);
+        line-height: 140%;
+      }
+    }
+
+    &__value {
+
+      &-img {
+        max-width: 30px;
+        max-height: 30px;
+      }
+    }
+  }
+
+  .additional {
+
+    &__description {
+      font-size: var(--fz-body);
+      line-height: 140%;
+    }
+
+    & h5 {
+      font-size: var(--fz-body);
+      line-height: 140%;
+      font-weight: 400;
+    }
+
+    &__icon {
+      width: 24px;
+      height: 24px;
+
+      &-twitter {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .tabs {
+
+    & h5 {
+      font-size: var(--fz-body);
+    }
+
+    &__item-col {
+      height: 23px;
+
+      & span {
+        font-size: var(--fz-caption);
+        line-height: 110%;
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+
+  .collection {
+
+    &__logo {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &__info {
+
+      &-buttons {
+        flex-direction: column;
+        row-gap: 20px;
+      }
+    }
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, auto);
+    column-gap: 10px;
   }
 }

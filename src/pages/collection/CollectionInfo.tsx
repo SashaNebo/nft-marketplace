@@ -1,34 +1,36 @@
 import { FC, useState } from 'react'
-import cn from './Collection.module.scss'
-import { spritePath } from '../../helpers/pathIcons'
-import Button from '../../components/UI/buttons/Button'
 import clsx from 'clsx'
-import { modID } from '../../utils/collectionsUtils'
-import { CONTRACT_INFO_STRING } from '../../types/collectionsTypes'
 
-type InfoProps = {
-  collection: CONTRACT_INFO_STRING
+import cn from './Collection.module.scss'
+import Button from '../../components/UI/button/Button'
+import { spritePath } from '../../helpers/imgPath'
+import { COLLECTION } from '../../types/componentsTypes/collectionTypes'
+import { toCollectVerifiedData } from '../../utils/collectVerifiedData'
+import { modID } from '../../helpers/someHelper'
+
+type PROPS = {
+  collection: COLLECTION
 }
 
-const CollectionInfo: FC<InfoProps> = ({ collection }) => {
+const CollectionInfo: FC<PROPS> = ({ collection }) => {
   const {
-    id,
+    address,
     collectionName,
     description,
-    floorPrice,
-    totalSupply,
-    verified,
     discordUrl,
     twitterUsername,
-  } = collection
+    floorPriceValue,
+    totalSupply,
+    verified,
+  } = toCollectVerifiedData<COLLECTION>(collection)
 
   const [activeCopy, setActiveCopy] = useState<boolean>(false)
 
-  const croppedID = id && modID(id)
+  const croppedID = modID(address)
 
   const copyingID = () => {
     navigator.clipboard
-      .writeText(id)
+      .writeText(address)
       .then(() => setActiveCopy(true))
       .finally(() => setTimeout(() => setActiveCopy(false), 3000))
   }
@@ -36,11 +38,11 @@ const CollectionInfo: FC<InfoProps> = ({ collection }) => {
   return (
     <div className={cn['collection__info']}>
       <div className={cn['collection__info-top']}>
-        <h2 className='collection__nickname text-work-h2'>{collectionName}</h2>
+        <h2 className={[cn['collection__nickname'], 'text-work-h2'].join(' ')}>{collectionName}</h2>
         <div className={cn['collection__info-buttons']}>
           <Button
             onClick={copyingID}
-            disabled={activeCopy}
+            disabled={false}
             className={clsx(cn['collection__info-button'], activeCopy && cn['copied'])}
             text={activeCopy ? 'Copied!' : croppedID}
             type='primary'
@@ -58,23 +60,23 @@ const CollectionInfo: FC<InfoProps> = ({ collection }) => {
       </div>
 
       <div className={cn['stats']}>
-        <div>
-          <h4 className='stats__value text-space-h4'>{floorPrice}</h4>
+        <div className={cn['stats__el']}>
+          <h4 className='text-space-h4'>{floorPriceValue}</h4>
           <p className={cn['stats__text']}>Floor price</p>
         </div>
-        <div>
-          <h4 className='stats__value text-space-h4'>{totalSupply}</h4>
-          <p className={cn['stats__text']}>Total supply</p>
+        <div className={cn['stats__el']}>
+          <h4 className='text-space-h4'>{totalSupply}</h4>
+          <p className={cn['stats__text']}>Supply</p>
         </div>
-        <div>
-          <h4 className='stats__value text-space-h4'>{verified}</h4>
+        <div className={cn['stats__el']}>
+          <img className={cn['stats__value-img']} src={verified} alt='' />
           <p className={cn['stats__text']}>Verified</p>
         </div>
       </div>
 
       <div className={cn['additional']}>
         <h5 className='text-space-h5'>Bio</h5>
-        <p className='text-work-h5'>{description}</p>
+        <p className={[cn['additional__description'], 'text-work-h5'].join(' ')}>{description}</p>
       </div>
 
       <div className={cn['additional']}>
@@ -82,12 +84,12 @@ const CollectionInfo: FC<InfoProps> = ({ collection }) => {
         <div className={cn['additional__icons']}>
           <a href={discordUrl} target='_blank'>
             <svg className={cn['additional__icon']}>
-              <use href={`${spritePath.buttonIcons}#discordLogo`}></use>
+              <use href={`${spritePath}#discordLogo`}></use>
             </svg>
           </a>
           <a href={'https://twitter.com/' + twitterUsername} target='_blank'>
             <svg className={cn['additional__icon-twitter']}>
-              <use href={`${spritePath.buttonIcons}#twitterLogo`}></use>
+              <use href={`${spritePath}#twitterLogo`}></use>
             </svg>
           </a>
         </div>

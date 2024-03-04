@@ -1,21 +1,25 @@
 import { FC, useEffect } from 'react'
+
+import cn from './Nfts.module.scss'
 import NftsList from './NftsList'
-import { NFTS_INFO } from '../../types/nftsTypes'
+import { NFT_SHOWCASE } from '../../types/componentsTypes/nftsTypes'
 
 type NFTsProps = {
-  nfts: NFTS_INFO[]
+  nfts: NFT_SHOWCASE[]
+  isLoading: boolean
+  errorMessage: string
   bg?: 'dark' | 'gray'
-  loading: boolean
 }
 
-const Nfts: FC<NFTsProps> = ({ nfts, bg, loading }) => {
+const Nfts: FC<NFTsProps> = ({ nfts, isLoading, errorMessage, bg }) => {
   useEffect(() => {
     window.scroll(0, 0)
   }, [])
+
   return (
     <div className='nfts'>
-      <div className='container'>
-        <NftsList loading={loading} nfts={nfts} bg={bg} />
+      <div className={cn['container']}>
+        <NftsList nfts={nfts} isLoading={isLoading} errorMessage={errorMessage} bg={bg} />
       </div>
     </div>
   )

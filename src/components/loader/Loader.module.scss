@@ -28,3 +28,15 @@
   height: 100%;
   max-height: 100px;
 }
+
+@media (max-width: 475px) {
+
+  .loader-xl {
+    height: 100px;
+  }
+
+  .loader-xl__img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+}

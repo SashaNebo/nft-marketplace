@@ -19,15 +19,6 @@
   --fz-body: 16px;
   --fz-caption: 12px;
 
-  --fw-700: 700;
-  --fw-600: 600;
-  --fw-400: 400;
-
-  --lh-160: 160%;
-  --lh-140: 140%;
-  --lh-120: 120%;
-  --lh-110: 110%;
-
   --transition-scale: all 0.3s ease;
   --transform-scale: scale(0.95);
 }

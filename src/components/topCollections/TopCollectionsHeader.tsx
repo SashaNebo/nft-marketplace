@@ -2,7 +2,8 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import cn from './TopCollections.module.scss'
-import Button from '../UI/buttons/Button'
+import Button from '../UI/button/Button'
+import { rootRoute } from '../../router/routes'
 
 const TopCollectionsHeader: FC = () => {
   return (
@@ -13,7 +14,7 @@ const TopCollectionsHeader: FC = () => {
           Checkout Top Rated Collections on the NFT Marketplace
         </h5>
       </div>
-      <Link className={cn['top-collections__header-link']} to={'/rankings'}>
+      <Link className={cn['top-collections__header-link']} to={`${rootRoute}/rankings`}>
         <Button
           className={cn['top-collections__header-button']}
           type='secondary'

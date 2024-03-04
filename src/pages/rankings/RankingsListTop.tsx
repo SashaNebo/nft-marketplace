@@ -5,13 +5,15 @@ const RankingListTop: FC = () => {
   return (
     <div className={[cn['rankings-list__top'], 'text-space-body'].join(' ')}>
       <div className={cn['collection']}>
-        <span className='text-space-body'>#</span>
-        <span className='text-space-body'>Collection</span>
+        <span className={[cn['collection__el'], 'text-space-body'].join(' ')}>#</span>
+        <span className={[cn['collection__el'], 'text-space-body'].join(' ')}>Collection</span>
       </div>
       <div className={cn['stats']}>
-        <span className={cn['rankings-list__top-text']}>Floor Price</span>
-        <span className={cn['rankings-list__top-text']}>Floor Change</span>
-        <span className={cn['rankings-list__top-text']}>Volume</span>
+        <span className={cn['rankings-list__top-text']}>Price</span>
+        <span className={cn['rankings-list__top-text']}>Change</span>
+        <span className={[cn['rankings-list__top-text'], cn['collection__el']].join(' ')}>
+          Volume
+        </span>
       </div>
     </div>
   )

@@ -1,16 +1,19 @@
 import { FC } from 'react'
+
 import cn from './Nfts.module.scss'
 import NFtsListCard from './NFtsListCard'
-import { NFTS_INFO } from '../../types/nftsTypes'
 import LoaderSmall from '../loader/LoaderSmall'
+import ErrorMessage from '../error/ErrorMessage'
+import { NFT_SHOWCASE } from '../../types/componentsTypes/nftsTypes'
 
 type NFTsListProps = {
-  nfts: NFTS_INFO[]
+  nfts: NFT_SHOWCASE[]
+  isLoading: boolean
+  errorMessage: string
   bg?: 'dark' | 'gray'
-  loading: boolean
 }
 
-const NftsList: FC<NFTsListProps> = ({ nfts, bg, loading }) => {
+const NftsList: FC<NFTsListProps> = ({ nfts, isLoading, errorMessage, bg }) => {
   return (
     <>
       <div className={cn['nfts-list']}>
@@ -19,7 +22,8 @@ const NftsList: FC<NFTsListProps> = ({ nfts, bg, loading }) => {
         ))}
       </div>
 
-      {loading && <LoaderSmall />}
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      {isLoading && <LoaderSmall />}
     </>
   )
 }
