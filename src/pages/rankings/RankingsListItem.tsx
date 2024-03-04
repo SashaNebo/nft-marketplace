@@ -1,42 +1,37 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
 
 import cn from './Rankings.module.scss'
-import { RANKINGS } from '../../types/componentsTypes/rankingsTypes'
-import { percentState } from './additional'
-import { toCollectVerifiedData } from '../../utils/collectVerifiedData.js'
-import { rootRoute } from '../../router/routes.js'
+import { COLLECTION_INFO } from '../../types/collectionsTypes'
+import { getCollectionsInfo, percentState } from '../../utils/collectionsUtils'
+import { Link } from 'react-router-dom'
 
-type PROPS = {
-  ranking: RANKINGS
+type RankingsListItemT = {
   number: number
+  rankingItem: COLLECTION_INFO
 }
 
-const RankingsListItem: FC<PROPS> = ({ ranking, number }) => {
-  const { address, collectionName, floorPricePercent, floorPriceValue, logoUrl, volumeETH } =
-    toCollectVerifiedData<RANKINGS>(ranking)
+const RankingsListItem: FC<RankingsListItemT> = ({ number, rankingItem }) => {
+  const { id, name, logo, priceValue, pricePercent, volume } = getCollectionsInfo(rankingItem)
 
-  const [percentValue, percentColor] = percentState(floorPricePercent)
+  const [percentValue, percentColor] = percentState(pricePercent)
 
   return (
     <div className={[cn['rankings-list__item']].join(' ')}>
       <div className={cn['collection']}>
         <span className={[cn['collection__number'], 'text-space-body'].join(' ')}>{number}</span>
         <Link
-          to={`${rootRoute}/collection/${address}`}
+          to={`/collection/${id}`}
           className={[cn['collection__wrapper'], 'animation-scale'].join(' ')}>
           <div className={cn['collection__avatar']}>
-            <img src={logoUrl} />
+            <img src={logo} />
           </div>
-          <div className={[cn['collection__name'], 'text-work-h5'].join(' ')}>{collectionName}</div>
+          <div className='text-work-h5'>{name}</div>
         </Link>
       </div>
       <div className={cn['stats']}>
-        <div className={[cn['stats__sold'], 'text-space-body'].join(' ')}>{floorPriceValue}</div>
-        <div className={[cn[percentColor], cn['stats__percent'], 'text-space-body'].join(' ')}>
-          {percentValue}
-        </div>
-        <div className={[cn['stats__volume'], 'text-space-body'].join(' ')}>{volumeETH} ETH</div>
+        <div className='stats__sold text-space-body'>{priceValue}</div>
+        <div className={[cn[percentColor], 'text-space-body'].join(' ')}>{percentValue}</div>
+        <div className='stats__volume text-space-body'>{volume} ETH</div>
       </div>
     </div>
   )

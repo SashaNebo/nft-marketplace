@@ -1,57 +1,42 @@
 import { useEffect, useState } from 'react'
+import { getNFTMetadata } from '../api/apiAlchemy'
+import { NFT_INFO, NFT_META_DATA } from '../types/typeNFT'
 
-import { NFT } from '../types/componentsTypes/nftsTypes'
-import { RETURN_HOOK } from './types'
-import { AlchemyAPI } from '../api'
-
-type RETURN = RETURN_HOOK<NFT>
-
+type RETURN = [NFT_INFO | null, boolean, string]
 const useNFT = (paramID: string): RETURN => {
-  const [nft, setNft] = useState<NFT>({
-    address: '',
-    tokenId: '',
-    collectionName: null,
-    description: null,
-    discordUrl: null,
-    floorPriceValue: null,
-    logoUrl: null,
-    nftImageUrl: null,
-    nftName: null,
-    twitterUsername: null,
-  })
-
+  const [isError, setIsError] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
+  const [nftInfo, setNftInfo] = useState<NFT_INFO | null>(null)
   const [address, tokenID] = paramID.split(':')
 
   useEffect(() => {
     setIsLoading(() => true)
-
-    AlchemyAPI.getNFTMetadata(address, tokenID)
+    getNFTMetadata<NFT_META_DATA>(address, tokenID)
       .then(nft => {
-        setNft(() => ({
-          address: nft.contract.address,
-          tokenId: nft.tokenId,
-          collectionName: nft.collection.name ?? nft.contract.openSeaMetadata.collectionName,
-          description: nft.contract.openSeaMetadata.description,
-          discordUrl: nft.contract.openSeaMetadata.discordUrl,
-          twitterUsername: nft.contract.openSeaMetadata.twitterUsername,
-          floorPriceValue: nft.contract.openSeaMetadata.floorPrice,
-          nftName: nft.name ?? nft.raw.metadata.name,
-          logoUrl:
-            nft.contract.openSeaMetadata.imageUrl ?? nft.contract.openSeaMetadata.externalUrl,
-          nftImageUrl:
+        const info: NFT_INFO = {
+          id: nft.contract.address,
+          nameCollection: nft.collection.name ?? nft.contract.name,
+          nameNFT: nft.name,
+          logoUrl: nft.contract.openSeaMetadata.imageUrl,
+          imageUrl:
             nft.image.cachedUrl ??
             nft.image.originalUrl ??
             nft.image.pngUrl ??
             nft.image.thumbnailUrl,
-        }))
-      })
-      .catch(error => setError(() => String(error)))
-      .finally(() => setIsLoading(() => false))
-  }, [])
+          description: nft.contract.openSeaMetadata.description,
+          discordUrl: nft.contract.openSeaMetadata.discordUrl,
+          twitterUsername: nft.contract.openSeaMetadata.twitterUsername,
+          floorPrice: nft.contract.openSeaMetadata.floorPrice,
+          mintTimeStamp: nft.mint.timestamp,
+        }
 
-  return [nft, isLoading, error]
+        setNftInfo(() => info)
+      })
+      .catch(error => setIsError(() => String(error)))
+      .finally(() => setIsLoading(() => false))
+  }, [paramID])
+
+  return [nftInfo, isLoading, isError]
 }
 
 export default useNFT

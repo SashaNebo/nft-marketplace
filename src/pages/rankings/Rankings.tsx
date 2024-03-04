@@ -2,16 +2,16 @@ import { FC, useState } from 'react'
 
 import cn from './Rankings.module.scss'
 import RankingsList from './RankingsList'
+import { PERIOD, PERIOD_ACTIONS } from '../../types/collectionsTypes'
 import RankingsTabs from './RankingsTabs'
-import { PERIOD, PERIOD_CASES } from '../../types/apiTypes/raribleTypes'
 
 const Rankings: FC = () => {
-  const [period, setPeriod] = useState<PERIOD_CASES>(PERIOD.today)
+  const [period, setPeriod] = useState<PERIOD_ACTIONS>(PERIOD.today)
 
   return (
     <main className={cn['rankings']}>
-      <div className={cn['container']}>
-        <h2 className={[cn['rankings__title'], 'text-work-h2'].join(' ')}>Top Collections</h2>
+      <div className='container'>
+        <h2 className='text-work-h2'>Top Collections</h2>
         <h5 className={cn['rankings__subtitle']}>
           Check out top ranking NFT collections on the NFT Marketplace.
         </h5>

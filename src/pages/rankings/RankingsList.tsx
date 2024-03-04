@@ -1,42 +1,38 @@
 import { FC, useEffect, useRef } from 'react'
 
 import cn from './Rankings.module.scss'
+import { COLLECTION_INFO, PERIOD_ACTIONS, SETTINGS } from '../../types/collectionsTypes'
 import RankingListTop from './RankingsListTop'
-import LoaderSmall from '../../components/loader/LoaderSmall'
-import { PERIOD_CASES } from '../../types/apiTypes/raribleTypes'
-import { SETTING_RANKINGS } from '../../types/componentsTypes/rankingsTypes'
-import useRankings from '../../hooks/useRankings'
-import ErrorMessage from '../../components/error/ErrorMessage'
 import RankingsListItem from './RankingsListItem'
+import LoaderSmall from '../../components/loader/LoaderSmall'
+import useCollections from '../../hooks/useCollections'
 
-const RankingsList: FC<{ period: PERIOD_CASES }> = ({ period }) => {
+const RankingsList: FC<{ period: PERIOD_ACTIONS }> = ({ period }) => {
+  const trackedRef = useRef<HTMLDivElement | null>(null)
+
+  const settings: SETTINGS = {
+    period,
+    quantity: 20,
+    delay: 1000,
+  }
+
+  const [collections, isLoading] = useCollections(settings, trackedRef)
+
   useEffect(() => {
     window.scroll(0, 0)
   }, [])
-
-  const trackedRef = useRef<HTMLDivElement | null>(null)
-
-  const setting: SETTING_RANKINGS = {
-    period,
-    limit: 20,
-    delay: 500,
-  }
-
-  const [rankings, isLoading, error] = useRankings(setting, trackedRef)
 
   return (
     <div className={cn['rankings-list']}>
       <RankingListTop />
 
-      {rankings.map((ranking, i) => (
-        <RankingsListItem ranking={ranking} number={++i} key={ranking.address} />
-      ))}
+      {collections?.map((rankingItem: COLLECTION_INFO, i) => (
+        <RankingsListItem key={rankingItem.id + i} rankingItem={rankingItem} number={++i} />
+      )) ?? []}
 
       <div ref={trackedRef}>
         <div>{isLoading && <LoaderSmall />}</div>
       </div>
-
-      {error && <ErrorMessage errorMessage={error} />}
     </div>
   )
 }

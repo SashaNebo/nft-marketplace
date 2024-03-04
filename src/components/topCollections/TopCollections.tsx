@@ -1,15 +1,17 @@
 import { FC } from 'react'
 
 import cn from './TopCollections.module.scss'
-import TopCollectionsHeader from './TopCollectionsHeader'
 import TopCollectionsList from './TopCollectionsList'
+import TopCollectionsHeader from './TopCollectionsHeader'
 
 const TopCollections: FC = () => {
   return (
     <section className={cn['top-collections']}>
       <TopCollectionsHeader />
 
-      <TopCollectionsList />
+      <div className={cn['collections']}>
+        <TopCollectionsList />
+      </div>
     </section>
   )
 }

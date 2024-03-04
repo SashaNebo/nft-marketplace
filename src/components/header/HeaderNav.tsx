@@ -1,11 +1,25 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
+import Button from '../UI/buttons/Button'
 import cn from './Header.module.scss'
-import Button from '../UI/button/Button'
-import { navLinks } from './additional'
 
 const HeaderNav: FC = () => {
+  const navLinks = [
+    {
+      text: 'Marketplace',
+      link: '/marketplace',
+    },
+    {
+      text: 'Rankings',
+      link: '/rankings',
+    },
+    {
+      text: 'Connect a wallet',
+      link: '/connect',
+    },
+  ]
+
   return (
     <nav className={cn['nav']}>
       <ul className={cn['nav-list']}>

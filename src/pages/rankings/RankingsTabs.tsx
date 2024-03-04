@@ -1,18 +1,16 @@
-import { FC } from 'react'
+import { Dispatch, FC } from 'react'
 import clsx from 'clsx'
 
 import cn from './Rankings.module.scss'
-import { periodListDesktop, periodListMobile } from './additional'
-import { PERIOD_CASES } from '../../types/apiTypes/raribleTypes'
+import { periodList } from '../../utils/collectionsUtils'
+import { PERIOD_ACTIONS } from '../../types/collectionsTypes'
 
-type PROPS = {
-  period: PERIOD_CASES
-  setPeriod: React.Dispatch<React.SetStateAction<PERIOD_CASES>>
+type TABS_PROPS = {
+  period: PERIOD_ACTIONS
+  setPeriod: Dispatch<React.SetStateAction<PERIOD_ACTIONS>>
 }
 
-const RankingsTabs: FC<PROPS> = ({ period, setPeriod }) => {
-  const periodList = window.innerWidth > 834 ? periodListDesktop : periodListMobile
-
+const RankingsTabs: FC<TABS_PROPS> = ({ period, setPeriod }) => {
   return (
     <div className={cn['tabs']}>
       {periodList.map(({ id, text }) => (

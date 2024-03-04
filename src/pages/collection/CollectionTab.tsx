@@ -1,15 +1,11 @@
-import { FC, useEffect } from 'react'
-
+import { FC } from 'react'
 import cn from './Collection.module.scss'
+import clsx from 'clsx'
 
 const CollectionTab: FC = () => {
-  useEffect(() => {
-    window.scroll(0, 0)
-  }, [])
-
   return (
     <div className={cn['tabs']}>
-      <div className={[cn['tabs__item'], cn['tabs__item-active']].join(' ')}>
+      <div className={clsx(cn['tabs__item'], cn['tabs__item-active'])}>
         <h5 className='text-work-h5'>Created</h5>
         <div className={cn['tabs__item-col']}>
           <span className='text-space-body'>666</span>

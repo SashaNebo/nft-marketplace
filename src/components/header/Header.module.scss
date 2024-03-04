@@ -41,13 +41,9 @@
   &-link {
     font-family: var(--font-family-work);
     font-style: var(--fz-body);
-    font-weight: 600;
+    font-weight: var(--fw-600);
     text-transform: none;
   }
-}
-
-.nav-bar {
-  display: none;
 }
 
 button.sign-up {
@@ -57,53 +53,4 @@ button.sign-up {
 
 .icon {
   fill: var(--color-purple);
-}
-
-@media (max-width: 1280px) {
-  .nav {
-    display: none;
-  }
-
-  .nav-bar {
-    position: relative;
-    display: flex;
-
-    &__icon {
-      cursor: pointer;
-    }
-
-    &__list {
-      display: none;
-      position: absolute;
-      top: 50px;
-      right: 0;
-      z-index: 10;
-      flex-direction: column;
-      row-gap: 15px;
-      width: max-content;
-      padding: 20px;
-      border-radius: 20px;
-      background: var(--gradient-warm);
-    }
-  }
-}
-
-.active {
-  display: flex;
-}
-
-@media (max-width: 480px) {
-  .header__logo {
-
-    h5 {
-      display: none;
-    }
-  }
-}
-
-@media (max-width: 375px) {
-
-  .header__container {
-    margin: 0 35px;
-  }
 }
