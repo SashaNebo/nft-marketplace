@@ -1,0 +1,148 @@
+.footer {
+  background-color: var(--bg-gray);
+  padding: 40px 0;
+
+  &__wrapper {
+    max-width: 987px;
+    margin: 0 auto;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 33% 25% 42%;
+  }
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    cursor: pointer;
+  }
+
+  &__link {
+    font-family: var(--font-family-work);
+    font-size: var(--fz-body);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    text-transform: none;
+    color: #ccc;
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+
+    &-icon {
+      fill: var(--color-gray);
+      cursor: pointer;
+      transition: var(--transition-scale);
+
+      &:nth-child(3) {
+        fill: transparent;
+        stroke: var(--color-gray);
+      }
+
+      &:hover {
+        transform: var(--transform-scale);
+      }
+    }
+  }
+}
+
+.subscribe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 12px;
+  background-color: #fff;
+  border-radius: 20px;
+
+  &__input {
+    font-weight: 400;
+    background: transparent;
+    margin-left: 20px;
+
+    &::placeholder {
+      font-family: var(--font-family-work);
+      font-size: var(--fz-body);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%;
+      text-transform: none;
+      color: var(--bg-dark);
+    }
+  }
+}
+
+.icon {
+  fill: var(--color-purple);
+}
+
+.footer__bottom {
+  margin-top: 30px;
+}
+
+.divider {
+  border: none;
+  color: var(--color-gray);
+  background-color: var(--color-gray);
+  height: 1px;
+  margin-bottom: 20px;
+}
+
+.license {
+  color: #ccc;
+}
+
+.button__primary2 {
+  display: none;
+}
+
+
+@media (max-width: 1280px) {
+  .footer {
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 30px;
+    }
+  }
+
+  .subscribe {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 550px) {
+  .subscribe {
+    flex-direction: column;
+    background: transparent;
+    row-gap: 16px;
+    align-items: normal;
+
+    &__input {
+      margin-left: 0;
+      background-color: #fff;
+      padding: 12px 0;
+      padding-left: 10px;
+      border-radius: 20px;
+    }
+  }
+
+  .button__primary1 {
+    display: none;
+  }
+
+  .button__primary2 {
+    display: flex;
+  }
+}

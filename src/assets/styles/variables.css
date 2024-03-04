@@ -1,0 +1,24 @@
+:root {
+  --bg-dark: #2B2B2B;
+  --bg-gray: #3B3B3B;
+
+  --color-gray: #858584;
+  --color-purple: #A259FF;
+
+  --gradient-cold: linear-gradient(128deg, #A259FF 49.75%, #377DF7 136.56%);
+  --gradient-warm: linear-gradient(101deg, #A259FF 13.57%, #FF6250 97.65%);
+
+  --font-family-work: "Work Sans", "sans-serif";
+  --font-family-space: "Space Mono", "sans-serif";
+
+  --fz-h1: 67px;
+  --fz-h2: 51px;
+  --fz-h3: 38px;
+  --fz-h4: 28px;
+  --fz-h5: 22px;
+  --fz-body: 16px;
+  --fz-caption: 12px;
+
+  --transition-scale: all 0.3s ease;
+  --transform-scale: scale(0.95);
+}

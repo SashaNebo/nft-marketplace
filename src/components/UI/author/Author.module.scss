@@ -1,0 +1,25 @@
+.author {
+  display: grid;
+  row-gap: 5px;
+
+  &__block {
+    width: fit-content;
+    display: flex;
+    column-gap: 12px;
+    cursor: pointer;
+
+    &-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 20px;
+      overflow: hidden;
+
+
+      & img {
+        width: 24px;
+        height: 24px;
+        object-fit: fill;
+      }
+    }
+  }
+}
