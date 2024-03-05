@@ -117,6 +117,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   row-gap: 15px;
 }
 
@@ -149,6 +150,12 @@
   }
 }
 
+@media (max-width: 834px) {
+  .search {
+    grid-template-columns: 86% 10% 4%;
+  }
+}
+
 @media (max-width: 550px) {
   .marketplace {
     &__top {
@@ -160,10 +167,30 @@
       }
     }
   }
+
+  .search {
+    grid-template-columns: 78% 18% 4%;
+  }
 }
 
 @media (max-width: 350px) {
-  .search__input {
-    font-size: var(--fz-caption);
+
+  .search {
+    grid-template-columns: 74% 22% 4%;
+
+    &__input {
+      font-size: var(--fz-caption);
+    }
+  }
+
+  .no-nfts {
+
+    & h3 {
+      font-size: var(--fz-h4);
+    }
+
+    & p {
+      font-size: var(--fz-body);
+    }
   }
 }

@@ -19,7 +19,6 @@ const MarketplaceTop: FC<MarketplaceTopProps> = ({ inputValue, setInputValue }) 
           <input
             onChange={e => setInputValue(() => e.target.value)}
             value={inputValue}
-            autoFocus
             className={[cn['search__input'], 'text-work-body'].join(' ')}
             type='text'
             placeholder='Search by name or address'
