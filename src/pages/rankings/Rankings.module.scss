@@ -227,20 +227,15 @@
 
 @media (max-width: 650px) {
 
-  .container {
-    max-width: 475px;
-  }
+  .rankings {
 
-  .collection {
+    &-list {
 
-    &__name {
-      font-size: var(--fz-body);
-      max-width: 140px;
+      &__item {
+        min-height: 70px;
+      }
     }
   }
-}
-
-@media (max-width: 650px) {
 
   .container {
     max-width: 375px;
@@ -258,12 +253,15 @@
 
     &__name {
       font-size: var(--fz-body);
+      font-weight: 400;
       max-width: 140px;
     }
 
     &__avatar {
       width: 24px;
       height: 24px;
+      min-width: 24px;
+      min-height: 24px;
 
       & img {
         width: 24px;

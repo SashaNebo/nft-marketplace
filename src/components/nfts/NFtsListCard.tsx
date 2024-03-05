@@ -28,10 +28,6 @@ const NFtsListCard: FC<NFtsListCardProps> = ({ bg, nft }) => {
     <div className={[cn['card'], cn[`${bg}`]].join(' ')}>
       <Link to={`${rootRoute}/nft/${address}:${tokenId}`}>
         <div className={cn['card__picture']}>
-          {/* <object
-            data={nftImageUrl}
-            type='image/jpg'
-            className={cn['card__picture-object']}></object> */}
           <img src={nftImageUrl} className={cn['card__picture-img']} alt='' />
         </div>
       </Link>

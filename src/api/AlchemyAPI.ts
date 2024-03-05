@@ -47,12 +47,12 @@ export default class AlchemyAPI {
     return data
   }
 
-  static async getNFTsForContract<T>(
+  static async getNFTsForContract(
     contractAddress: string,
     startToken: number = 0,
     limit: number = 30
   ): Promise<{
-    nfts: T
+    nfts: NFT_METADATA[]
     pageKey: string
   }> {
     const event = 'getNFTsForContract'
@@ -65,7 +65,17 @@ export default class AlchemyAPI {
       limit,
     }
 
-    const data: { nfts: T; pageKey: string } = await ky(url, { searchParams }).json()
+    const data: { nfts: NFT_METADATA[]; pageKey: string } = await ky(url, { searchParams }).json()
+    return data
+  }
+
+  static async searchContractMetadata(query: string): Promise<{ contracts: CONTRACT_METADATA[] }> {
+    const event = 'searchContractMetadata'
+    const url = `${baseURL}/${event}`
+
+    const searchParams = { query }
+
+    const data: { contracts: CONTRACT_METADATA[] } = await ky(url, { searchParams }).json()
     return data
   }
 }
