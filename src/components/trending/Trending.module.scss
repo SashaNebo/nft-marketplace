@@ -1,0 +1,173 @@
+.trending {
+  padding: 80px 0;
+
+  &__title {
+    font-family: var(--font-family-work);
+    font-size: var(--fz-h3);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    text-transform: capitalize;
+  }
+
+  &__subtitle {
+    font-size: var(--fz-h5);
+    font-weight: 400;
+    line-height: 160%;
+    margin-top: 10px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+    margin-top: 60px;
+  }
+}
+
+.collection-card {
+  display: grid;
+  row-gap: 10px;
+
+  &__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 15px;
+  }
+
+  &__loader {
+    width: 330px;
+    height: 445px;
+  }
+}
+
+.grid-1 {
+  grid-column: 1 / 4;
+  background: linear-gradient(to right, #21dae4, #d9cf51);
+
+  & img {
+    max-width: 330px;
+    min-width: 330px;
+    max-height: 330px;
+    min-height: 330px;
+  }
+}
+
+.grid-2 {
+  background: linear-gradient(to right, #5853f8, #dc7ffc);
+}
+
+.grid-3 {
+  background: linear-gradient(to right, #d35079, #8755cb);
+}
+
+.grid-4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-purple);
+}
+
+.grid-1,
+.grid-2,
+.grid-3,
+.grid-4 {
+  border-radius: 20px;
+  overflow: hidden;
+
+  & img {
+    display: flex;
+  }
+}
+
+.grid-2,
+.grid-3,
+.grid-4 {
+  max-width: 100px;
+  min-width: 100px;
+
+  & img {
+    max-width: 100px;
+    min-width: 100px;
+    max-height: 100px;
+    min-height: 100px;
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1280px) {
+  .trending {
+
+    &__content {
+      justify-content: space-evenly;
+    }
+  }
+
+  .collection-card {
+
+    &:nth-child(3),
+    &__loader:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 834px) {
+  .trending {
+    padding: 40px 0;
+
+    & h3 {
+      font-size: var(--fz-h4);
+      line-height: 140%;
+    }
+
+    & h5 {
+      font-size: var(--fz-body);
+      line-height: 140%;
+    }
+
+    &__content {
+      margin-top: 40px;
+    }
+  }
+
+  .collection-card {
+
+    &:nth-child(2),
+    &__loader:nth-child(2) {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .grid-1 {
+    max-width: 250px;
+
+    & img {
+      max-width: 250px;
+      min-width: 250px;
+      max-height: 250px;
+      min-height: 250px;
+    }
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    max-width: 70px;
+    min-width: 70px;
+
+    & img {
+      max-width: 70px;
+      min-width: 70px;
+      max-height: 70px;
+      min-height: 70px;
+    }
+  }
+}

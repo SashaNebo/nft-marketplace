@@ -37,6 +37,7 @@ interface COLLECTION {
 
 interface CONTRACT {
   address: string
+  symbol: string | null
   totalSupply: string | null
   openSeaMetadata: OPENSEA_METADATA
 }

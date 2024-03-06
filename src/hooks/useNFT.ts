@@ -32,12 +32,12 @@ const useNFT = (paramID: string): RETURN => {
         setNft(() => ({
           address: nft.contract.address,
           tokenId: nft.tokenId,
-          collectionName: nft.collection.name ?? nft.contract.openSeaMetadata.collectionName,
+          collectionName: nft.collection?.name ?? nft.contract.openSeaMetadata.collectionName,
           description: nft.contract.openSeaMetadata.description,
           discordUrl: nft.contract.openSeaMetadata.discordUrl,
           twitterUsername: nft.contract.openSeaMetadata.twitterUsername,
           floorPriceValue: nft.contract.openSeaMetadata.floorPrice,
-          nftName: nft.name ?? nft.raw.metadata.name,
+          nftName: nft?.name ?? nft.raw.metadata?.name,
           logoUrl:
             nft.contract.openSeaMetadata.imageUrl ?? nft.contract.openSeaMetadata.externalUrl,
           nftImageUrl:

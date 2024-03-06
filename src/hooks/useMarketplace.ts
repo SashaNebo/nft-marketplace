@@ -134,11 +134,11 @@ const collectionNFTs = (nfts: NFT_METADATA[]) =>
       acc.push({
         address: nft.contract.address,
         tokenId: nft.tokenId,
-        collectionName: nft.collection.name ?? nft.contract.openSeaMetadata.collectionName,
+        collectionName: nft.collection?.name ?? nft.contract.openSeaMetadata.collectionName,
         floorPriceValue: nft.contract.openSeaMetadata.floorPrice,
         logoUrl: nft.contract.openSeaMetadata.imageUrl ?? nft.contract.openSeaMetadata.externalUrl,
         nftImageUrl,
-        nftName: nft.name ?? nft.raw.metadata.name,
+        nftName: nft?.name ?? nft.raw.metadata?.name,
         tokenType: nft.tokenType,
       })
     return acc
