@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import { TOKENS, TRENDING_NFTS, trendingPH } from '../components/trending/additional'
+import { TRENDING_NFTS, trendingPH } from '../components/trending/additional'
 import { AlchemyAPI } from '../api'
+import { TOKENS } from '../types/apiTypes/alchemyTypes'
 
 type RETURN = [TRENDING_NFTS[], boolean]
 
@@ -25,12 +26,19 @@ const useTrendingNFTs = (tokensArray: TOKENS[][]): RETURN => {
       if (promise.status === 'fulfilled') {
         const collect = promise.value.reduce(
           (accObj: Partial<TRENDING_NFTS>, nft) => {
+            const nftImageUrl =
+              nft.image.cachedUrl ??
+              nft.image.pngUrl ??
+              nft.image.originalUrl ??
+              nft.image.thumbnailUrl
+
             accObj.address = nft.contract.address
-            accObj.collectionName = nft.contract.openSeaMetadata.collectionName ?? nft.name
-            accObj.logoUrl = nft.contract.openSeaMetadata.imageUrl
+            accObj.collectionName = nft.contract.openSeaMetadata?.collectionName ?? nft?.name
+            accObj.logoUrl =
+              nft.contract.openSeaMetadata.imageUrl ?? nft.contract.openSeaMetadata.externalUrl
             accObj.symbol = nft.contract.symbol
             accObj.tokenIds?.push(nft.tokenId)
-            accObj.nftImages?.push(nft.image.cachedUrl)
+            accObj.nftImages?.push(nftImageUrl)
             return accObj
           },
           {

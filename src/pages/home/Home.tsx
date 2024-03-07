@@ -3,6 +3,7 @@ import { FC } from 'react'
 import TopCollections from '../../components/topCollections/TopCollections'
 import Hero from '../../components/hero/Hero'
 import Trending from '../../components/trending/Trending'
+import Discover from '../../components/discover/Discover'
 
 const Home: FC = () => {
   return (
@@ -10,6 +11,7 @@ const Home: FC = () => {
       <Hero />
       <Trending />
       <TopCollections />
+      <Discover />
     </div>
   )
 }

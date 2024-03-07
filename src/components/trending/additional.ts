@@ -1,4 +1,5 @@
 import { getRandomNumbers } from '../../helpers/someHelper'
+import { TOKEN } from '../../types/apiTypes/alchemyTypes'
 
 const limit: () => number = () => {
   const wiw = window.innerWidth
@@ -23,12 +24,7 @@ export type TRENDING_NFTS = {
   nftImages: (string | null)[]
 }
 
-export type TOKENS = {
-  contractAddress: string
-  tokenId: string
-}
-
-export const arrayTokens: TOKENS[][] = addresses.map(address =>
+export const arrayTokens: TOKEN[][] = addresses.map(address =>
   getRandomNumbers(0, 1000, 3).map(id => ({
     contractAddress: address,
     tokenId: id + '',

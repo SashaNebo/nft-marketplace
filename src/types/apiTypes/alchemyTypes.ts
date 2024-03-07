@@ -56,4 +56,9 @@ interface RAW {
   }
 }
 
-export type { CONTRACT_METADATA, NFT_METADATA }
+type TOKEN = {
+  contractAddress: string
+  tokenId: string
+}
+
+export type { CONTRACT_METADATA, NFT_METADATA, TOKEN }

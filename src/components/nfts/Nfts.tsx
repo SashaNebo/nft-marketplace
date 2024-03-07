@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 
 import cn from './Nfts.module.scss'
 import NftsList from './NftsList'
@@ -12,10 +12,6 @@ type NFTsProps = {
 }
 
 const Nfts: FC<NFTsProps> = ({ nfts, isLoading, errorMessage, bg }) => {
-  useEffect(() => {
-    window.scroll(0, 0)
-  }, [])
-
   return (
     <div className='nfts'>
       <div className={cn['container']}>
