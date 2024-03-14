@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
 
 import cn from './TopCollections.module.scss'
 import TopCollectionsLoader from './TopCollectionsLoader.tsx'
@@ -8,8 +7,8 @@ import { SETTING_TC } from '../../types/componentsTypes/topCollectionsTypes.ts'
 import { PERIOD } from '../../types/apiTypes/raribleTypes.ts'
 import ErrorMessage from '../error/ErrorMessage.tsx'
 import TopCollectionsListItem from './TopCollectionsListItem.tsx'
-import Button from '../UI/button/Button.tsx'
 import { rootRoute } from '../../router/routes.ts'
+import { ButtonLink } from '../UI/buttons/ButtonLink.tsx'
 
 const TopCollectionsList: FC = () => {
   const limit = window.innerWidth > 1280 ? 12 : 6
@@ -38,15 +37,16 @@ const TopCollectionsList: FC = () => {
       </div>
 
       {error && <ErrorMessage errorMessage={error} />}
-      <Link className={cn['top-collections__bottom-link']} to={`${rootRoute}/rankings`}>
-        <Button
-          className={cn['top-collections__header-button']}
-          type='secondary'
-          size='lg'
-          icon='rocketLaunch'
-          text='View Rankings'
-        />
-      </Link>
+
+      <ButtonLink
+        to={`${rootRoute}/rankings`}
+        className={[cn['top-collections__bottom-link'],
+        cn['top-collections__header-button']].join(' ')}
+        variant='secondary'
+        size='lg'
+        icon='rocketLaunch'
+        text='View Rankings'
+      />
     </>
   )
 }

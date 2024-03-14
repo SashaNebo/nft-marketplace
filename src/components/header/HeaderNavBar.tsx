@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import cn from './Header.module.scss'
 import { spritePath } from '../../helpers/imgPath'
 import { navLinks } from './additional'
-import Button from '../UI/button/Button'
+import Button from '../UI/buttons/Button'
 import clsx from 'clsx'
 
 const HeaderNavBar: FC = () => {
@@ -27,7 +27,7 @@ const HeaderNavBar: FC = () => {
         <Button
           onClick={() => setOpen(false)}
           text='sign up'
-          type='primary'
+          variant='primary'
           size='md'
           className={cn['sign-up']}
         />

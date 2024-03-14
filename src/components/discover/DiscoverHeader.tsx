@@ -1,9 +1,8 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
 
 import cn from './Discover.module.scss'
-import Button from '../UI/button/Button'
 import { rootRoute } from '../../router/routes'
+import { ButtonLink } from '../UI/buttons/ButtonLink'
 
 const DiscoverHeader: FC = () => {
   return (
@@ -14,11 +13,15 @@ const DiscoverHeader: FC = () => {
           Explore new trending NFTs
         </h5>
       </div>
-      <Link
+
+      <ButtonLink
+        to={`${rootRoute}/marketplace`}
+        variant='secondary'
+        text='see all'
+        size='lg'
+        icon='eye'
         className={[cn['discover__header-link'], cn['desktop']].join(' ')}
-        to={`${rootRoute}/marketplace`}>
-        <Button type='secondary' text='see all' size='lg' icon='eye' />
-      </Link>
+      />
     </div>
   )
 }

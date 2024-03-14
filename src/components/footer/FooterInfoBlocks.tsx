@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import cn from './Footer.module.scss'
 import { spritePath } from '../../helpers/imgPath'
-import Button from '../UI/button/Button'
+import Button from '../UI/buttons/Button'
 import { rootRoute } from '../../router/routes'
 
 export const InfoBlockNFT: FC = () => {
@@ -65,9 +65,9 @@ export const InfoBlockJoin: FC = () => {
       </a>
       <form className={cn['subscribe']}>
         <input className={cn['subscribe__input']} type='text' placeholder='Enter your email here' />
-        <Button type='primary' size='lg' text='Subscribe' className={cn['button__primary1']} />
+        <Button variant='primary' size='lg' text='Subscribe' className={cn['button__primary1']} />
         <Button
-          type='primary'
+          variant='primary'
           size='md'
           text='Subscribe'
           icon='message'

@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import clsx from 'clsx'
 
 import cn from './Collection.module.scss'
-import Button from '../../components/UI/button/Button'
+import Button from '../../components/UI/buttons/Button'
 import { spritePath } from '../../helpers/imgPath'
 import { COLLECTION } from '../../types/componentsTypes/collectionTypes'
 import { toCollectVerifiedData } from '../../utils/collectVerifiedData'
@@ -45,14 +45,14 @@ const CollectionInfo: FC<PROPS> = ({ collection }) => {
             disabled={false}
             className={clsx(cn['collection__info-button'], activeCopy && cn['copied'])}
             text={activeCopy ? 'Copied!' : croppedID}
-            type='primary'
+            variant='primary'
             size='lg'
             icon='copy'
           />
           <Button
             className={cn['collection__info-button']}
             text='Follow'
-            type='secondary'
+            variant='secondary'
             size='lg'
             icon='plus'
           />

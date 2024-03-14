@@ -8,7 +8,6 @@ const TopCollections: FC = () => {
   return (
     <section className={cn['top-collections']}>
       <TopCollectionsHeader />
-
       <TopCollectionsList />
     </section>
   )

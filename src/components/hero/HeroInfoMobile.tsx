@@ -1,22 +1,20 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
 
 import cn from './Hero.module.scss'
 import { rootRoute } from '../../router/routes'
-import Button from '../UI/button/Button'
+import { ButtonLink } from '../UI/buttons/ButtonLink'
 
 const HeroInfoMobile: FC = () => {
   return (
     <>
-      <Link to={`${rootRoute}/marketplace`} className={cn['hero__link-to-start']}>
-        <Button
-          text='get started'
-          type='primary'
-          size='lg'
-          icon='rocketLaunch'
-          className={cn['hero__button-mobile']}
-        />
-      </Link>
+      <ButtonLink
+        to={`${rootRoute}/marketplace`}
+        text='get started'
+        variant='primary'
+        size='lg'
+        icon='rocketLaunch'
+        className={[cn['hero__info-mobile'] ,cn['hero__link-to-start']].join(' ')}
+      />
 
       <div className={cn['hero__info-mobile']}>
         <div className={cn['hero__info-item']}>

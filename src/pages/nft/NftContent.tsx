@@ -1,8 +1,6 @@
 import { FC, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 
 import cn from './NFT.module.scss'
-import Button from '../../components/UI/button/Button'
 import { spritePath } from '../../helpers/imgPath'
 import Author from '../../components/UI/author/Author'
 import useNFT from '../../hooks/useNFT'
@@ -10,6 +8,7 @@ import { toCollectVerifiedData } from '../../utils/collectVerifiedData'
 import { rootRoute } from '../../router/routes'
 import Loader from '../../components/loader/Loader'
 import NotFound from '../../components/notFound/NotFound'
+import { ButtonLink } from '../../components/UI/buttons/ButtonLink'
 
 const NftContent: FC<{ paramID: string }> = ({ paramID }) => {
   const [nft, isLoading, error] = useNFT(paramID)
@@ -78,9 +77,14 @@ const NftContent: FC<{ paramID: string }> = ({ paramID }) => {
 
           <div className={cn['nft__bottom']}>
             <h3 className='text-work-h3'>More from this collection</h3>
-            <Link to={`${rootRoute}/collection/${address}`}>
-              <Button icon='arrowRight' size='lg' type='secondary' text='Go To Collection Page' />
-            </Link>
+
+            <ButtonLink
+              to={`${rootRoute}/collection/${address}`}
+              icon='arrowRight'
+              size='lg'
+              variant='secondary'
+              text='Go To Collection Page'
+            />
           </div>
         </div>
       )}

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import cn from './Hero.module.scss'
-import Button from '../UI/button/Button'
+import Button from '../UI/buttons/Button'
 import { rootRoute } from '../../router/routes'
 
 const HeroIntro: FC = () => {
@@ -19,7 +19,7 @@ const HeroIntro: FC = () => {
       <Link to={`${rootRoute}/marketplace`} className={cn['hero__link-to-start']}>
         <Button
           text='get started'
-          type='primary'
+          variant='primary'
           size='lg'
           icon='rocketLaunch'
           className={cn['hero__button']}

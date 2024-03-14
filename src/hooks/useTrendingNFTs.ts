@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 
 import { TRENDING_NFTS, trendingPH } from '../components/trending/additional'
 import { AlchemyAPI } from '../api'
-import { TOKEN } from '../types/apiTypes/alchemyTypes'
+import { TOKENS } from '../types/apiTypes/alchemyTypes'
 
 type RETURN = [TRENDING_NFTS[], boolean]
 
-const useTrendingNFTs = (tokensArray: TOKEN[][]): RETURN => {
+const useTrendingNFTs = (tokensArray: TOKENS[][]): RETURN => {
   const [nfts, setNFTs] = useState<TRENDING_NFTS[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
 

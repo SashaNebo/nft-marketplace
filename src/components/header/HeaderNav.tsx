@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import cn from './Header.module.scss'
-import Button from '../UI/button/Button'
 import { navLinks } from './additional'
 
 const HeaderNav: FC = () => {
@@ -17,8 +16,6 @@ const HeaderNav: FC = () => {
           </li>
         ))}
       </ul>
-
-      <Button text='sign up' type='primary' size='lg' icon='user' className={cn['sign-up']} />
     </nav>
   )
 }

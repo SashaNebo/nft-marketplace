@@ -1,13 +1,12 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
 
 import cn from './Discover.module.scss'
 import useShowCaseNFTs from '../../hooks/useShowCaseNFTs'
 import { tokens } from './additional'
 import Nfts from '../nfts/Nfts'
 import DiscoverLoader from './DiscoverLoader'
-import Button from '../UI/button/Button'
 import { rootRoute } from '../../router/routes'
+import { ButtonLink } from '../UI/buttons/ButtonLink'
 
 const DiscoverNFTs: FC = () => {
   const [nfts, isLoading, error] = useShowCaseNFTs(tokens)
@@ -20,11 +19,14 @@ const DiscoverNFTs: FC = () => {
         <Nfts nfts={nfts} isLoading={false} errorMessage={error} bg='gray' />
       )}
 
-      <Link
+      <ButtonLink
+        to={`${rootRoute}/marketplace`}
+        variant='secondary'
+        text='see all'
+        size='lg'
+        icon='eye'
         className={[cn['discover__header-link'], cn['mobile']].join(' ')}
-        to={`${rootRoute}/marketplace`}>
-        <Button type='secondary' text='see all' size='lg' icon='eye' />
-      </Link>
+      />
     </div>
   )
 }
