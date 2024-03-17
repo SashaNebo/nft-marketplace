@@ -1,11 +1,12 @@
 import { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
+import clsx from 'clsx'
 
 import cn from './Header.module.scss'
 import { spritePath } from '../../helpers/imgPath'
 import { navLinks } from './additional'
-import Button from '../UI/buttons/Button'
-import clsx from 'clsx'
+import { ButtonLink } from '../UI/buttons/ButtonLink'
+import { rootRoute } from '../../router/routes'
 
 const HeaderNavBar: FC = () => {
   const [open, setOpen] = useState(false)
@@ -24,8 +25,10 @@ const HeaderNavBar: FC = () => {
             </Link>
           </li>
         ))}
-        <Button
+
+        <ButtonLink
           onClick={() => setOpen(false)}
+          to={`${rootRoute}/sign-up`}
           text='sign up'
           variant='primary'
           size='md'
