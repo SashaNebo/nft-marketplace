@@ -1,6 +1,6 @@
 import { defaultAddress, formattingNumbers } from '../helpers/someHelper'
 import { img_PH } from '../helpers/imgPath'
-import { GENERAL_NULL, GENERAL_STRING, TO_STRING } from '../types/general'
+import { GENERAL_STRING, TO_STRING } from '../types/general'
 
 const toCollectVerifiedData = <O>(obj: O): TO_STRING<O> => {
   const collectVerifiedData: Partial<TO_STRING<O>> = {}
@@ -12,7 +12,7 @@ const toCollectVerifiedData = <O>(obj: O): TO_STRING<O> => {
   return collectVerifiedData as TO_STRING<O>
 }
 
-const getData = (value: GENERAL_NULL[keyof GENERAL_NULL], key: keyof GENERAL_NULL) => {
+const getData = (value, key) => {
   const verificationEl = {
     address: v => v,
     tokenId: v => v,
