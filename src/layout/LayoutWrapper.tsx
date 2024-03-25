@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
 
-const AppWrapper: FC = () => {
+const LayoutWrapper: FC = () => {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ const AppWrapper: FC = () => {
   )
 }
 
-export default AppWrapper
+export default LayoutWrapper

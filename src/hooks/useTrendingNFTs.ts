@@ -31,7 +31,6 @@ const useTrendingNFTs = (tokensArray: TOKEN[][]): RETURN => {
               nft.image.pngUrl ??
               nft.image.originalUrl ??
               nft.image.thumbnailUrl
-
             accObj.address = nft.contract.address
             accObj.collectionName = nft.contract.openSeaMetadata?.collectionName ?? nft?.name
             accObj.logoUrl =

@@ -35,10 +35,6 @@
       width: 120px;
       object-fit: fill;
     }
-
-    // Mobile
-    // left: 50%;
-    // transform: translateX(-50%);
   }
 
   &__info {
@@ -62,6 +58,15 @@
       padding-right: 30px;
       max-height: 60px;
       text-transform: none;
+
+      &.active {
+        background-color: #82C26E;
+        border-color: #fff;
+
+        & svg {
+          fill: #fff;
+        }
+      }
     }
   }
 

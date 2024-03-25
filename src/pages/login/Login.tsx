@@ -1,31 +1,31 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
-import cn from './SignUp.module.scss'
-import signUpImg from '../../assets/images/signUp-img.png'
-import { SignUpForm } from './SignUpForm'
+import cn from './Login.module.scss'
+import signInImg from '../../assets/images/signIn-img.png'
 import { AccountCover } from '../../components/accountCover/AccountCover'
 import { rootRoute } from '../../router/routes'
+import { LoginForm } from './LoginForm'
 
-const SignUp: FC = () => {
-  
+const Login: FC = () => {
+
   return (
-    <AccountCover image={signUpImg}>
+    <AccountCover image={signInImg}>
       <div className={cn['account']}>
         <div className={cn['account__header']}>
-          <h2 className='text-work-h2'>Create account</h2>
+          <h2 className='text-work-h2'>Login</h2>
           <p className='text-work-body'>
             Welcome! enter your details and start <br/> creating, collecting and selling NFTs.
           </p>
         </div>
 
-        <SignUpForm />
+        <LoginForm />
         <div className={cn['have-account']}>
-          <p>Have account?</p> <Link to={`${rootRoute}/login`}>Login</Link>
+          <p>No account?</p> <Link to={`${rootRoute}/signup`}>SignUp</Link>
         </div>
       </div>
     </AccountCover>
   )
 }
 
-export { SignUp }
+export { Login }

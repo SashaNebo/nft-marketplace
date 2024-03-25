@@ -1,13 +1,18 @@
-import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { FC, useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 import cn from './Header.module.scss'
 import HeaderNav from './HeaderNav'
 import { spritePath } from '../../helpers/imgPath'
 import HeaderNavBar from './HeaderNavBar'
 import { rootRoute } from '../../router/routes'
+import { Bag } from '../bag/Bag'
 
 const Header: FC = () => {
+  const location = useLocation()
+  const [visibleBag, setVisibleBag] = useState(false)
+  useEffect(() => setVisibleBag(() => false), [location])
+  
   return (
     <header className={cn['header']}>
       <div className={cn['header__container']}>
@@ -20,8 +25,9 @@ const Header: FC = () => {
           </div>
         </Link>
 
-        <HeaderNav />
-        <HeaderNavBar />
+        <HeaderNav setVisibleBag={setVisibleBag}/>
+        <HeaderNavBar setVisibleBag={setVisibleBag}/>
+        {visibleBag && <Bag setVisibleBag={setVisibleBag} />}
       </div>
     </header>
   )

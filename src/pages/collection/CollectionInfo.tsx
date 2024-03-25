@@ -1,12 +1,10 @@
-import { FC, useState } from 'react'
-import clsx from 'clsx'
+import { FC } from 'react'
 
 import cn from './Collection.module.scss'
-import Button from '../../components/UI/buttons/Button'
 import { spritePath } from '../../helpers/imgPath'
 import { COLLECTION } from '../../types/componentsTypes/collectionTypes'
 import { toCollectVerifiedData } from '../../utils/collectVerifiedData'
-import { modID } from '../../helpers/someHelper'
+import { CollectionInfoButtons } from './CollectionInfoButtons'
 
 type PROPS = {
   collection: COLLECTION
@@ -24,56 +22,53 @@ const CollectionInfo: FC<PROPS> = ({ collection }) => {
     verified,
   } = toCollectVerifiedData<COLLECTION>(collection)
 
-  const [activeCopy, setActiveCopy] = useState<boolean>(false)
-
-  const croppedID = modID(address)
-
-  const copyingID = () => {
-    navigator.clipboard
-      .writeText(address)
-      .then(() => setActiveCopy(true))
-      .finally(() => setTimeout(() => setActiveCopy(false), 3000))
-  }
-
   return (
     <div className={cn['collection__info']}>
       <div className={cn['collection__info-top']}>
         <h2 className={[cn['collection__nickname'], 'text-work-h2'].join(' ')}>{collectionName}</h2>
-        <div className={cn['collection__info-buttons']}>
-          <Button
-            onClick={copyingID}
-            disabled={false}
-            className={clsx(cn['collection__info-button'], activeCopy && cn['copied'])}
-            text={activeCopy ? 'Copied!' : croppedID}
-            variant='primary'
-            size='lg'
-            icon='copy'
-          />
-          <Button
-            className={cn['collection__info-button']}
-            text='Follow'
-            variant='secondary'
-            size='lg'
-            icon='plus'
-          />
-        </div>
+        <CollectionInfoButtons address={address} />
       </div>
 
-      <div className={cn['stats']}>
-        <div className={cn['stats__el']}>
-          <h4 className='text-space-h4'>{floorPriceValue}</h4>
-          <p className={cn['stats__text']}>Floor price</p>
-        </div>
-        <div className={cn['stats__el']}>
-          <h4 className='text-space-h4'>{totalSupply}</h4>
-          <p className={cn['stats__text']}>Supply</p>
-        </div>
-        <div className={cn['stats__el']}>
-          <img className={cn['stats__value-img']} src={verified} alt='' />
-          <p className={cn['stats__text']}>Verified</p>
-        </div>
-      </div>
+      <InfoStats floorPriceValue={floorPriceValue} totalSupply={totalSupply} verified={verified} />
 
+      <InfoAdditional
+        description={description}
+        discordUrl={discordUrl}
+        twitterUsername={twitterUsername}
+      />
+    </div>
+  )
+}
+
+const InfoStats: FC<{ floorPriceValue: string; totalSupply: string; verified: string }> = ({
+  floorPriceValue,
+  totalSupply,
+  verified,
+}) => {
+  return (
+    <div className={cn['stats']}>
+      <div className={cn['stats__el']}>
+        <h4 className='text-space-h4'>{floorPriceValue}</h4>
+        <p className={cn['stats__text']}>Floor price</p>
+      </div>
+      <div className={cn['stats__el']}>
+        <h4 className='text-space-h4'>{totalSupply}</h4>
+        <p className={cn['stats__text']}>Supply</p>
+      </div>
+      <div className={cn['stats__el']}>
+        <img className={cn['stats__value-img']} src={verified} alt='' />
+        <p className={cn['stats__text']}>
+          {verified?.includes('no-verified') ? 'No verified' : 'Verified'}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+const InfoAdditional: FC<{ description: string, discordUrl: string, twitterUsername: string }> = ({ 
+  description, discordUrl, twitterUsername }) => {
+  return (
+    <>
       <div className={cn['additional']}>
         <h5 className='text-space-h5'>Bio</h5>
         <p className={[cn['additional__description'], 'text-work-h5'].join(' ')}>{description}</p>
@@ -94,7 +89,7 @@ const CollectionInfo: FC<PROPS> = ({ collection }) => {
           </a>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

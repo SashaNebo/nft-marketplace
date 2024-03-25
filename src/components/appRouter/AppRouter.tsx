@@ -1,31 +1,17 @@
-import { FC } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { FC, useContext } from 'react'
 
-import AppWrapper from '../../layout/AppWrapper'
-import { headerRoutes, rootRoute } from '../../router/routes'
-import { wrappedRoutes } from '../../router/routes'
-import NotFound from '../notFound/NotFound'
-import LayoutHeader from '../../layout/LayoutHeader'
-import Home from '../../pages/home/Home'
+import { PublicRouter } from './PublicRouter'
+import { PrivateRouter } from './PrivateRouter'
+import { AuthContext } from '../../context'
 
 const AppRouter: FC = () => {
+  const isAuth = useContext(AuthContext)
+
   return (
-    <Routes>
-      <Route path={rootRoute} element={<AppWrapper />}>
-        <Route index element={<Home />} />
-        {wrappedRoutes.map(route => (
-          <Route path={route.path} element={<route.component />} key={route.path} />
-        ))}
-      </Route>
-
-      <Route path={rootRoute} element={<LayoutHeader />}>
-        {headerRoutes.map(route => (
-          <Route path={route.path} element={<route.component />} key={route.path} />
-        ))}
-      </Route>
-
-      <Route path='*' element={<NotFound />} />
-    </Routes>
+    <>
+      {isAuth && <PrivateRouter />}
+      {!isAuth && <PublicRouter />}
+    </>
   )
 }
 

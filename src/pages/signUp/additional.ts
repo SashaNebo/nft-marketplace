@@ -1,5 +1,6 @@
-import {  FieldErrors, FieldValues, UseFormRegister, UseFormRegisterReturn, UseFormWatch } from 'react-hook-form'
+import { FieldErrors, UseFormRegister, UseFormRegisterReturn, UseFormWatch } from 'react-hook-form'
 import { INPUT } from '../../components/UI/input/inputType'
+import { FORM_SIGN_UP } from '../../types/accountTypes/accountTypes'
 
 // SIGN UP
 
@@ -11,16 +12,16 @@ type REGISTER_FIELDS = {
 }
 
 type INPUT_FIELDS = {
-  inputUserName: INPUT,
-  inputEmail: INPUT,
-  inputPassword: INPUT,
-  inputConfirmPassword: INPUT,
+  inputUserName: INPUT
+  inputEmail: INPUT
+  inputPassword: INPUT
+  inputConfirmPassword: INPUT
 }
 
 const createInputFields = (
-  register: UseFormRegister<FieldValues>,
-  watch: UseFormWatch<FieldValues>,
-  errors: FieldErrors<FieldValues>
+  register: UseFormRegister<FORM_SIGN_UP>,
+  watch: UseFormWatch<FORM_SIGN_UP>,
+  errors: FieldErrors<FORM_SIGN_UP>
 ): INPUT_FIELDS => {
   const registerFields = createRegisterFields(register, watch)
 
@@ -55,13 +56,13 @@ const createInputFields = (
       leftIcon: 'lockKey',
       type: 'password',
       placeholder: 'Confirm Password',
-    }
+    },
   }
 }
 
 const createRegisterFields = (
-  register: UseFormRegister<FieldValues>,
-  watch: UseFormWatch<FieldValues>
+  register: UseFormRegister<FORM_SIGN_UP>,
+  watch: UseFormWatch<FORM_SIGN_UP>
 ): REGISTER_FIELDS => ({
   registerUserName: register('userName', {
     required: 'Required field',
@@ -75,10 +76,11 @@ const createRegisterFields = (
 
   registerPassword: register('password', {
     required: 'Required field',
-    minLength: { value: 8, message: 'Min 8 symbol' },
+    minLength: { value: 1, message: 'Min 8 symbol' },
   }),
 
   registerConfirmPassword: register('confirmPassword', {
+    required: 'Required field',
     validate: () => {
       return watch('password') !== watch('confirmPassword') ? 'Invalid confirm password' : true
     },
@@ -131,7 +133,4 @@ const changePasswordVisible = (lock: LOCK_STATE, setLock: SET_LOCK) => {
   }
 }
 
-
-
-
-export { createInputFields,  initialLockState, changePasswordVisible}
+export { createInputFields, initialLockState, changePasswordVisible }

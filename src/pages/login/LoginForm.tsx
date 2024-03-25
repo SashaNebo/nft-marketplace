@@ -1,20 +1,22 @@
 import { FC, useState } from 'react'
-import { FieldValues, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import { Form } from '../../components/UI/form/Form'
 import { InputField } from '../../components/UI/input/InputField'
 import Button from '../../components/UI/buttons/Button'
 import { createInputFields, initialLockState } from './additional'
+import { useLogin } from '../../hooks/useLogin'
+import { FORM_LOGIN } from '../../types/accountTypes/accountTypes'
 
-const SignInForm: FC = () => {
+const LoginForm: FC = () => {
 
   const {
     register,
     handleSubmit,
     watch,
-    reset,
+    setError,
     formState: { errors },
-  } = useForm()
+  } = useForm<FORM_LOGIN>()
 
   const { inputEmail, inputPassword } = createInputFields(register, errors)
   const [lock, setLock] = useState({ ...initialLockState });
@@ -26,24 +28,20 @@ const SignInForm: FC = () => {
       : setLock(() => ({ type: 'password', rightIcon: 'eyeSlash' }))
   }
 
-  const onSubmit = (data: FieldValues) => {
-    alert(JSON.stringify(data))
-    reset()
-  }
+  const login = useLogin(setError)
 
   return (
-    <Form handleSubmit={handleSubmit(onSubmit)}>
+    <Form handleSubmit={handleSubmit(login)}>
       <InputField {...inputEmail} />
       <InputField {...inputPassword} {...passwordProps} showPassword={() => showPassword()} />
       <Button
-        style={{ marginTop: '15px' }}
         variant='primary'
-        text='Create account'
+        text='login'
         size='md'
         type='submit'
       />
     </Form>
   )
-}   
+}
    
-export { SignInForm }
+export { LoginForm }

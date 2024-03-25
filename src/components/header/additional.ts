@@ -11,6 +11,6 @@ export const navLinks: { text: string; link: string }[] = [
   },
   {
     text: 'Connect a wallet',
-    link: `${rootRoute}/connect`,
+    link: `${rootRoute}/connect-wallet`,
   },
 ]

@@ -1,13 +1,17 @@
 import { FC, useState } from 'react'
-import { FieldValues, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
-import cn from './SignUp.module.scss'
 import Button from '../../components/UI/buttons/Button'
 import { Form } from '../../components/UI/form/Form'
 import { InputField } from '../../components/UI/input/InputField'
-import { LOCK_STATE, createInputFields, initialLockState, changePasswordVisible } from './additional'
-import { rootRoute } from '../../router/routes'
+import { FORM_SIGN_UP } from '../../types/accountTypes/accountTypes'
+import useSignUp from '../../hooks/useSignUp'
+import {
+  LOCK_STATE,
+  createInputFields,
+  initialLockState,
+  changePasswordVisible,
+} from './additional'
 
 const SignUpForm: FC = () => {
   const {
@@ -15,8 +19,9 @@ const SignUpForm: FC = () => {
     handleSubmit,
     watch,
     reset,
+    setError,
     formState: { errors },
-  } = useForm()
+  } = useForm<FORM_SIGN_UP>({ mode: 'onBlur' })
 
   const { inputUserName, inputEmail, inputPassword, inputConfirmPassword } = createInputFields(
     register,
@@ -24,20 +29,19 @@ const SignUpForm: FC = () => {
     errors
   )
 
-  const [lock, setLock] = useState<LOCK_STATE>({ ...initialLockState });
+  const [lock, setLock] = useState<LOCK_STATE>({ ...initialLockState })
   const showPassword = changePasswordVisible(lock, setLock)
-  
-  const passwordProps = watch('password') ? lock.passwordProps : {}
-  const confirmPasswordProps = watch('confirmPassword') ? lock.confirmPasswordProps : {}
-
-  const onSubmit = (data: FieldValues) => {
-    alert(JSON.stringify(data))
-    setLock(() => ({...initialLockState}))
+  const fullReset = () => {
     reset()
+    setLock(() => ({ ...initialLockState }))
   }
 
+  const passwordProps = watch('password') ? lock.passwordProps : {}
+  const confirmPasswordProps = watch('confirmPassword') ? lock.confirmPasswordProps : {}
+  const signUp = useSignUp(fullReset, setError)
+
   return (
-    <Form handleSubmit={handleSubmit(onSubmit)}>
+    <Form handleSubmit={handleSubmit(signUp)}>
       <InputField {...inputUserName} />
       <InputField {...inputEmail} />
 
@@ -54,14 +58,11 @@ const SignUpForm: FC = () => {
       />
 
       <Button
-        style={{ marginTop: '15px' }}
         variant='primary'
         text='Create account'
         size='md'
         type='submit'
       />
-
-      <Link to={`${rootRoute}/sign-in`} className={cn['sign-in__link']}>or Sign In</Link>
     </Form>
   )
 }

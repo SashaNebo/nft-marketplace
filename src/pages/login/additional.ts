@@ -1,7 +1,6 @@
-// SIGN IN
-
-import { FieldErrors, FieldValues, UseFormRegister, UseFormRegisterReturn } from "react-hook-form";
-import { INPUT } from "../../components/UI/input/inputType";
+import { FieldErrors, UseFormRegister, UseFormRegisterReturn } from 'react-hook-form'
+import { INPUT } from '../../components/UI/input/inputType'
+import { FORM_LOGIN } from '../../types/accountTypes/accountTypes'
 
 type REGISTER_FIELDS = {
   registerEmail: UseFormRegisterReturn<string>
@@ -9,13 +8,13 @@ type REGISTER_FIELDS = {
 }
 
 type INPUT_FIELDS = {
-  inputEmail: INPUT,
-  inputPassword: INPUT,
+  inputEmail: INPUT
+  inputPassword: INPUT
 }
 
 const createInputFields = (
-  register: UseFormRegister<FieldValues>,
-  errors: FieldErrors<FieldValues>
+  register: UseFormRegister<FORM_LOGIN>,
+  errors: FieldErrors<FORM_LOGIN>
 ): INPUT_FIELDS => {
   const registerFields = createRegisterFields(register)
 
@@ -38,7 +37,7 @@ const createInputFields = (
   }
 }
 
-const createRegisterFields = (register: UseFormRegister<FieldValues>): REGISTER_FIELDS => ({
+const createRegisterFields = (register: UseFormRegister<FORM_LOGIN>): REGISTER_FIELDS => ({
   registerEmail: register('email', {
     required: 'Required field',
   }),
@@ -54,7 +53,8 @@ export type PASSWORD_PROPS = {
 }
 
 const initialLockState: PASSWORD_PROPS = {
-  type: 'password', rightIcon: 'eyeSlash'
+  type: 'password',
+  rightIcon: 'eyeSlash',
 }
 
 export { createInputFields, initialLockState }

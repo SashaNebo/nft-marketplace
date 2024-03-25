@@ -42,6 +42,15 @@
     }
   }
 
+  &__button {
+    margin-top: 30px;
+    max-width: 300px;
+
+    &.active {
+      background-color: #D04848;
+    }
+  }
+
   &__price {
     margin-top: 30px;
     display: flex;
@@ -87,6 +96,7 @@
 
     &-text {
       margin-top: 10px;
+      text-transform: none;
     }
 
     & p {
