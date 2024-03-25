@@ -9,6 +9,7 @@ import { ButtonLink } from '../UI/buttons/ButtonLink'
 import { rootRoute } from '../../router/routes'
 import Button from '../UI/buttons/Button'
 import { AuthContext } from '../../context'
+import { useAccountNFTsState } from '../../hooks/useAccountNFTs'
 
 interface PROPS {
   setVisibleBag: React.Dispatch<React.SetStateAction<boolean>>
@@ -18,6 +19,7 @@ const HeaderNavBar: FC<PROPS> = ({setVisibleBag}) => {
   const isAuth = useContext(AuthContext)
   const [open, setOpen] = useState(false)
   const navbarRef = useRef<HTMLElement | null>(null)
+  const quanityBag = useAccountNFTsState().accountNFTs.length
 
   const handleOpen = (e: MouseEvent) => {
     const isNavbar = navbarRef.current?.contains(e.target as Node)
@@ -49,6 +51,7 @@ const HeaderNavBar: FC<PROPS> = ({setVisibleBag}) => {
             </Link>
           </li>
         ))}
+
         {isAuth && (
            <li className='animation-scale' key='profile'>
            <Link onClick={() => setOpen(false)} to={`${rootRoute}/profile`} className='nav-bar__list-link'>
@@ -74,7 +77,7 @@ const HeaderNavBar: FC<PROPS> = ({setVisibleBag}) => {
               setOpen(() => false)
               setVisibleBag(vis => !vis)
             }}
-            text='bag'
+            text={`bag ${quanityBag ? quanityBag : ''}`}
             variant='primary'
             size='md'
             className={cn['sign-up']}

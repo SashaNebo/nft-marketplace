@@ -34,7 +34,7 @@ const BagCheckout: FC = () => {
 
   const btnText = clsx(
     success && 'Success!',
-    quanity && `Buy for ${summ} ETH`,
+    quanity && `Buy for ${summ.toFixed(2)} ETH`,
     !quanity && !success && 'not available'
   )
 
