@@ -34,7 +34,7 @@ const NftContent: FC<{ paramID: string }> = ({ paramID }) => {
   return (
     <>
       {!isLoading && (
-        <div className='container'>
+        <div className={cn['container']}>
           <div className={cn['nft__wrapper']}>
             <div className={cn['nft__img']}>
               <img src={nftImageUrl} alt='' />

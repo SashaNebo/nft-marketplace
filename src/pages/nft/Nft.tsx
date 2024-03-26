@@ -12,9 +12,7 @@ const Nft: FC = () => {
   return (
     <main className={cn['nft']}>
       <NftContent paramID={paramID} />
-      <div className='container'>
-        <NftMore paramID={paramID} />
-      </div>
+      <NftMore paramID={paramID} />
     </main>
   )
 }

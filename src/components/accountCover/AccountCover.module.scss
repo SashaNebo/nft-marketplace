@@ -48,6 +48,10 @@
 
     &__picture {
       max-height: 232px;
+
+      & img {
+        width: 100%;
+      }
     }
 
     &__account {

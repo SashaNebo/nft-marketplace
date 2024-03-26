@@ -114,8 +114,17 @@
     margin-top: 60px;
   }
 }
+.container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
 
 @media (max-width: 1280px) {
+  .container {
+    max-width: 834px;
+  }
+
   .nft {
 
     &__wrapper {
@@ -155,6 +164,10 @@
 }
 
 @media (max-width: 950px) {
+  .container {
+    max-width: 750px;
+  }
+
   .nft {
 
     &__wrapper {
@@ -196,6 +209,9 @@
 }
 
 @media (max-width: 834px) {
+  .container {
+    max-width: 650px;
+  }
 
   .nft {
 
@@ -216,7 +232,16 @@
   }
 }
 
+@media (max-width: 750px) {
+  .container {
+    max-width: 550px;
+  }
+}
+
 @media (max-width: 550px) {
+  .container {
+    max-width: 400px;
+  }
 
   .nft {
 
@@ -234,6 +259,10 @@
 }
 
 @media (max-width: 425px) {
+
+  .container {
+    max-width: 315px;
+  }
 
   .nft {
     padding: 40px 0;
