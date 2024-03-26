@@ -7,6 +7,11 @@ const useAccount = () => {
     uid: '',
     email: '',
     userName: '',
+    wallets: {
+      metamask: false,
+      walletConnect: false,
+      coinBase: false
+    }
   })
 
   const localAccount: ACCOUNT | null = JSON.parse(localStorage.getItem('account') as string)
