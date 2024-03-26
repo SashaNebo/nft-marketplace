@@ -1,10 +1,13 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import Button from '../../components/UI/buttons/Button'
 
 import cn from './ConnectWallet.module.scss'
 import { walletOptions } from './additional'
+import MockAPI from '../../api/MockAPI'
+import useAccount from '../../hooks/useAccount'
 
 const ConnectWalletOptions: FC = () => {
+  const {id} = useAccount().account
   const [wallet, setWallet] = useState<{
     metamask: boolean
     walletConnect: boolean
@@ -15,6 +18,15 @@ const ConnectWalletOptions: FC = () => {
     walletConnect: false,
     coinBase: false,
   })
+
+  useEffect(() => {
+    MockAPI.getWallets(id).then(walletState => setWallet(() => walletState))
+  }, [])
+
+  useEffect(() => {
+    if (!id) return
+    MockAPI.updateWallets(id, wallet)
+  }, [wallet])
 
   return (
     <div className={cn['wallet-options']}>

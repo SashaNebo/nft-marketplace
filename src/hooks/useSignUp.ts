@@ -32,7 +32,12 @@ const useSignUp = (
     const auth = getAuth()
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password)
-      createMockApiAccount({ uid: user.uid, email, userName })
+      createMockApiAccount({
+        uid: user.uid,
+        email,
+        userName,
+        wallets: { metamask: false, walletConnect: false, coinBase: false },
+      })
       fullReset()
     } catch (error: unknown) {
       if (error instanceof FirebaseError) {

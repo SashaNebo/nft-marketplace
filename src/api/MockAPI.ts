@@ -11,13 +11,18 @@ export default class MockAPI {
   }
 
   static async getSubscriptions(id: string) {
-    const [data]: ACCOUNT_ITEMS[] = await await ky.get(`${baseURL}/${id}/items`).json()
+    const [data]: ACCOUNT_ITEMS[] = await ky.get(`${baseURL}/${id}/items`).json()
     return data.subscriptions
   }
 
   static async getNFTs(id: string) {
-    const [data]: ACCOUNT_ITEMS[] = await await ky.get(`${baseURL}/${id}/items`).json()
+    const [data]: ACCOUNT_ITEMS[] = await ky.get(`${baseURL}/${id}/items`).json()
     return data.nfts
+  }
+
+  static async getWallets(id: string) {
+    const [data]: ACCOUNT[] = await ky.get(`${baseURL}/${id}`).json()
+    return data.wallets
   }
 
   static async hasSubscription(id: string, sub: string): Promise<boolean> {
@@ -52,5 +57,9 @@ export default class MockAPI {
 
   static async updateAccountNFTs(id: string, nfts: ACCOUNT_NFTS[]) {
     ky.put(`${baseURL}/${id}/items/${id}`, { json: { nfts } })
+  }
+
+  static async updateWallets(id: string, wallets: ACCOUNT["wallets"]) {
+    ky.put(`${baseURL}/${id}`, { json: { wallets } })
   }
 }

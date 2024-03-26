@@ -1,4 +1,3 @@
-import { TOKEN } from '../apiTypes/alchemyTypes'
 import { GENERAL_STRING } from '../general'
 
 type FORM_SIGN_UP = {
@@ -18,6 +17,11 @@ type ACCOUNT = {
   uid: string
   userName: string
   email: string
+  wallets: {
+    metamask: boolean,
+    walletConnect: boolean,
+    coinBase: boolean,
+  }
 }
 
 type ACCOUNT_REQUEST = Omit<ACCOUNT, 'id'>
