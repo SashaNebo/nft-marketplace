@@ -51,6 +51,10 @@
   }
 }
 
+.disabled {
+  opacity: .5;
+}
+
 @media (max-width: 775px) {
   .account {
     margin: 30px 0 40px;

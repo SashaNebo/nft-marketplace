@@ -1,7 +1,6 @@
 import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import Button from '../../components/UI/buttons/Button'
 import { Form } from '../../components/UI/form/Form'
 import { InputField } from '../../components/UI/input/InputField'
 import { FORM_SIGN_UP } from '../../types/accountTypes/accountTypes'
@@ -12,6 +11,7 @@ import {
   initialLockState,
   changePasswordVisible,
 } from './additional'
+import { SignUpSubmitBtn } from './SignUpSubmitBtn'
 
 const SignUpForm: FC = () => {
   const {
@@ -30,6 +30,7 @@ const SignUpForm: FC = () => {
   )
 
   const [lock, setLock] = useState<LOCK_STATE>({ ...initialLockState })
+  const [isLoading, setIsLoading] = useState(false);
   const showPassword = changePasswordVisible(lock, setLock)
   const fullReset = () => {
     reset()
@@ -38,7 +39,7 @@ const SignUpForm: FC = () => {
 
   const passwordProps = watch('password') ? lock.passwordProps : {}
   const confirmPasswordProps = watch('confirmPassword') ? lock.confirmPasswordProps : {}
-  const signUp = useSignUp(fullReset, setError)
+  const signUp = useSignUp(fullReset, setError, setIsLoading)
 
   return (
     <Form handleSubmit={handleSubmit(signUp)}>
@@ -57,12 +58,7 @@ const SignUpForm: FC = () => {
         showPassword={() => showPassword('confirmPassword')}
       />
 
-      <Button
-        variant='primary'
-        text='Create account'
-        size='md'
-        type='submit'
-      />
+      <SignUpSubmitBtn isLoading={isLoading} />
     </Form>
   )
 }

@@ -11,10 +11,14 @@ import { rootRoute } from "../router/routes"
 
 type SET_ERROR = UseFormSetError<FORM_SIGN_UP>
 
-const useSignUp = (fullReset: () => void, setError: SET_ERROR) => {
+const useSignUp = (
+  fullReset: () => void,
+  setError: SET_ERROR,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const navigate = useNavigate()
-  const {setAccount} = useContext(AccountContext as ACCOUNT_STATE_CONTEXT)
-  
+  const { setAccount } = useContext(AccountContext as ACCOUNT_STATE_CONTEXT)
+
   const createMockApiAccount = async (newAccount: ACCOUNT_REQUEST) => {
     const account = await MockAPI.createAccount(newAccount)
     MockAPI.createItemsForAccount(account.id)
@@ -24,6 +28,7 @@ const useSignUp = (fullReset: () => void, setError: SET_ERROR) => {
   }
 
   return async ({ userName, email, password }: FORM_SIGN_UP) => {
+    setIsLoading(() => true)
     const auth = getAuth()
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password)
@@ -33,6 +38,8 @@ const useSignUp = (fullReset: () => void, setError: SET_ERROR) => {
       if (error instanceof FirebaseError) {
         setError('email', { type: 'validate', message: error?.code })
       }
+    } finally {
+      setIsLoading(() => false)
     }
   }
 }

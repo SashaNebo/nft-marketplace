@@ -72,6 +72,7 @@
     width: 100%;
     max-width: 510px;
     display: flex;
+    min-height: 450px;
 
     & img {
       width: 100%;
@@ -123,6 +124,7 @@
   .highlighted {
 
     &__img {
+      min-height: 330px;
 
       & img {
         max-width: 100%;
@@ -192,6 +194,7 @@
       width: fit-content;
       max-width: 330px;
       max-height: fit-content;
+      min-height: 250px;
 
       & img {
         min-width: 330px;
@@ -222,7 +225,7 @@
 
 
     &__img {
-
+      min-height: 280px;
 
       & img {
         max-height: 280px;
@@ -242,7 +245,7 @@
 
 
     &__img {
-
+      min-height: 240px;
 
       & img {
         min-width: 280px;
@@ -262,6 +265,7 @@
       width: fit-content;
       max-width: 250px;
       max-height: fit-content;
+      min-height: 220px;
 
       & img {
         min-width: 250px;

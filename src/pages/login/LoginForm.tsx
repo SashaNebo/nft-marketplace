@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form'
 
 import { Form } from '../../components/UI/form/Form'
 import { InputField } from '../../components/UI/input/InputField'
-import Button from '../../components/UI/buttons/Button'
 import { createInputFields, initialLockState } from './additional'
 import { useLogin } from '../../hooks/useLogin'
 import { FORM_LOGIN } from '../../types/accountTypes/accountTypes'
+import { LoginSubmitBtn } from './LoginSubmitBtn'
 
 const LoginForm: FC = () => {
 
@@ -20,6 +20,7 @@ const LoginForm: FC = () => {
 
   const { inputEmail, inputPassword } = createInputFields(register, errors)
   const [lock, setLock] = useState({ ...initialLockState });
+  const [isLoading, setIsLoading] = useState(false);
   const passwordProps = watch('password') ? lock : {}
 
   const showPassword = () => {
@@ -28,18 +29,13 @@ const LoginForm: FC = () => {
       : setLock(() => ({ type: 'password', rightIcon: 'eyeSlash' }))
   }
 
-  const login = useLogin(setError)
+  const login = useLogin(setError, setIsLoading)
 
   return (
     <Form handleSubmit={handleSubmit(login)}>
       <InputField {...inputEmail} />
       <InputField {...inputPassword} {...passwordProps} showPassword={() => showPassword()} />
-      <Button
-        variant='primary'
-        text='login'
-        size='md'
-        type='submit'
-      />
+      <LoginSubmitBtn isLoading={isLoading} />
     </Form>
   )
 }
