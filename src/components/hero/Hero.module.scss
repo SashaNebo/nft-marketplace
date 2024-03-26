@@ -256,6 +256,14 @@
 }
 
 @media (max-width: 350px) {
+  .hero {
+    padding: 40px 0;
+
+    &__title {
+      font-size: var(--fz-h5);
+    }
+  }
+
   .highlighted {
     width: fit-content;
     align-self: center;

@@ -98,18 +98,23 @@ a.auth-btn {
   display: flex;
 }
 
-@media (max-width: 480px) {
-  .header__logo {
-
-    h5 {
-      display: none;
-    }
+@media (max-width: 450px) {
+  .header__container {
+    max-width: 320px;
+    margin: 0 auto;
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 350px) {
 
   .header__container {
-    margin: 0 35px;
+    max-width: 250px;
+  }
+
+  .header__logo {
+
+    h5 {
+      font-size: var(--fz-body);
+    }
   }
 }
