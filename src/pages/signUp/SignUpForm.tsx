@@ -33,6 +33,7 @@ const SignUpForm: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const showPassword = changePasswordVisible(lock, setLock)
   const fullReset = () => {
+    localStorage.removeItem('account')
     reset()
     setLock(() => ({ ...initialLockState }))
   }

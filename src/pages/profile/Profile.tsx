@@ -17,11 +17,6 @@ const Profile: FC = () => {
       uid: '',
       email: '',
       userName: '',
-      wallets: {
-        metamask: false,
-        walletConnect: false,
-        coinBase: false
-      }
     })
     localStorage.removeItem('account')
     navigate(`${rootRoute}/login`)
